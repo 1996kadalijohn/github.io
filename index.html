@@ -343,7 +343,9 @@ function openModal(type){const m=document.getElementById('modal'),c=document.get
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 document.querySelector('.letter').onclick=()=>openModal('letter');
 function quizAnswer(){document.getElementById('quizResult').style.display='block';burst();}
-function playFinalHit(){const a=document.getElementById('finalHitSfx');if(!a)return;a.currentTime=0;a.volume=.58;const p=a.play();if(p&&p.catch)p.catch(()=>{});}\nfunction playSfx(id,volume=.55){const a=document.getElementById(id);if(!a)return;a.currentTime=0;a.volume=volume;const p=a.play();if(p&&p.catch)p.catch(()=>{});}\nfunction bloomRose(el){el.classList.toggle('open');if(el.classList.contains('open'))playSfx('roseSfx',.45);burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
+function playFinalHit(){const a=document.getElementById('finalHitSfx');if(!a)return;a.currentTime=0;a.volume=.58;const p=a.play();if(p&&p.catch)p.catch(()=>{});}
+function playSfx(id,volume=.55){const a=document.getElementById(id);if(!a)return;a.currentTime=0;a.volume=volume;const p=a.play();if(p&&p.catch)p.catch(()=>{});}
+function bloomRose(el){el.classList.toggle('open');if(el.classList.contains('open'))playSfx('roseSfx',.45);burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
 function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').classList.add('show');playSfx('unlockSfx',.5);burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
 let activeSong=1,songPlaying=false;
 function getSong(){return document.getElementById('song'+activeSong)}
