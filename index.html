@@ -59,6 +59,30 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
 @media(max-width:650px){.interactive-grid{grid-template-columns:1fr}.heart-stage,.meter{padding:27px 18px}.tap-heart{width:125px;height:125px;font-size:62px}.final-choice button{width:100%}}
 
 .slide.portrait{background:radial-gradient(circle at 50% 45%,#4b2455 0%,#170713 72%)}.slide.portrait img{object-fit:contain;transform:scale(1.01);padding:8px}.slide.portrait.active img{transform:scale(1.03)}.slide.portrait:after{background:linear-gradient(0deg,rgba(8,1,5,.78),transparent 42%)}.slide.square{background:radial-gradient(circle at 50% 45%,#452044 0%,#170713 72%)}.slide.square img{object-fit:contain;padding:8px}.slide.square.active img{transform:scale(1.03)}
+
+/* Rose Garden + Secret Vault + Final Us */
+.rose-garden{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:980px;margin:auto}
+.rose-bloom{min-height:185px;border:1px solid rgba(255,160,196,.25);border-radius:24px;background:linear-gradient(145deg,rgba(92,15,48,.6),rgba(28,3,16,.82));display:grid;place-items:center;text-align:center;transition:.3s;position:relative;overflow:hidden;padding:15px}
+.rose-bloom:hover{transform:translateY(-7px);border-color:#ff9fc4;box-shadow:0 18px 45px rgba(255,54,132,.18)}
+.rose-icon{font-size:55px;filter:drop-shadow(0 0 15px rgba(255,70,140,.45));transition:.45s}
+.rose-bloom.open .rose-icon{transform:scale(1.18) rotate(-8deg)}
+.rose-bloom .rose-text{display:none;font-family:'Cormorant Garamond';font-size:18px;line-height:1.35;color:#f5dce6}
+.rose-bloom.open .rose-text{display:block;animation:fadeUp .45s ease}.rose-bloom.open .rose-label{display:none}
+.rose-bloom:after{content:'♡';position:absolute;right:8px;bottom:-25px;font:80px 'Cormorant Garamond';color:rgba(255,166,196,.05)}
+.vault{max-width:780px;margin:auto;padding:40px;text-align:center;position:relative}
+.vault-orb{font-size:68px;animation:pulse 1.7s infinite;filter:drop-shadow(0 0 30px rgba(255,70,140,.7))}
+.vault input{width:min(370px,100%);padding:14px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:#fff;text-align:center;outline:none;margin:15px 0}
+.vault-message{display:none;margin-top:24px;padding:25px;border-radius:22px;border:1px solid rgba(255,160,196,.28);background:rgba(255,255,255,.035)}
+.vault-message.show{display:block;animation:fadeUp .55s ease}.vault-message .big-secret{font:39px 'Great Vibes';color:#ffb1cc}.vault-message p{font-family:'Cormorant Garamond';font-size:20px;line-height:1.55;color:#f1d9e2}
+.us-screen{min-height:680px;border:1px solid rgba(255,160,196,.3);border-radius:34px;background:radial-gradient(circle at 50% 30%,rgba(255,70,140,.22),transparent 35%),linear-gradient(145deg,#4b0d29,#16030c 72%);display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.55)}
+.us-screen:before,.us-screen:after{content:'♡';position:absolute;font-size:220px;color:rgba(255,170,200,.035);font-family:'Cormorant Garamond'}.us-screen:before{left:-40px;top:-70px}.us-screen:after{right:-45px;bottom:-90px}
+.us-content{position:relative;z-index:2;max-width:850px;padding:35px}
+.us-symbol{font-size:62px;filter:drop-shadow(0 0 25px rgba(255,80,145,.65));animation:pulse 1.7s infinite}
+.us-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px 0}
+.us-stat{padding:17px 10px;border:1px solid rgba(255,170,200,.2);border-radius:18px;background:rgba(255,255,255,.035)}.us-stat strong{display:block;font:32px 'Cormorant Garamond';color:#ffb1cc}.us-stat span{font-size:10px;color:#d3adba}
+.us-screen h3{font-size:60px;margin:10px 0}.us-screen p{font:23px/1.5 'Cormorant Garamond';color:#f4dce5}.us-sign{font:38px 'Great Vibes';color:#ffb0ca;margin:20px}
+@media(max-width:850px){.rose-garden{grid-template-columns:repeat(3,1fr)}.us-stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.rose-garden{grid-template-columns:repeat(2,1fr)}.vault{padding:28px 18px}.us-screen{min-height:620px}.us-screen h3{font-size:45px}.us-screen p{font-size:20px}.us-stats{grid-template-columns:repeat(2,1fr)}}
+
 </style>
 </head>
 <body>
@@ -113,6 +137,9 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
  <button class="navcard" onclick="document.getElementById('date').scrollIntoView({behavior:'smooth'})"><i>🌙</i><strong data-en="Choose Our Date" data-te="మన డేట్ ఎంచుకో">Choose Our Date</strong><small data-en="You decide" data-te="నువ్వే డిసైడ్ చెయ్యి">You decide</small></button>
  <button class="navcard" onclick="document.getElementById('when').scrollIntoView({behavior:'smooth'})"><i>💌</i><strong data-en="Open When…" data-te="ఎప్పుడు ఓపెన్ చేయాలి…">Open When…</strong><small data-en="Little love notes" data-te="చిన్న ప్రేమ మాటలు">Little love notes</small></button>
  <button class="navcard" onclick="document.getElementById('meter').scrollIntoView({behavior:'smooth'})"><i>♾️</i><strong data-en="Love Meter" data-te="లవ్ మీటర్">Love Meter</strong><small data-en="No maximum" data-te="మ్యాక్సిమమ్ లేదు">No maximum</small></button>
+ <button class="navcard" onclick="document.getElementById('roseGarden').scrollIntoView({behavior:'smooth'})"><i>🌹</i><strong data-en="Rose Garden" data-te="రోజ్ గార్డెన్">Rose Garden</strong><small data-en="Make the roses bloom" data-te="రోజెస్‌ని బ్లూమ్ చెయ్యి">Make the roses bloom</small></button>
+ <button class="navcard" onclick="document.getElementById('vault').scrollIntoView({behavior:'smooth'})"><i>🔐</i><strong data-en="Secret Vault" data-te="సీక్రెట్ వాల్ట్">Secret Vault</strong><small data-en="Only for Pavani" data-te="పవని కోసం మాత్రమే">Only for Pavani</small></button>
+ <button class="navcard" onclick="document.getElementById('us').scrollIntoView({behavior:'smooth'})"><i>💞</i><strong data-en="Final Us" data-te="మన చివరి పేజీ">Final Us</strong><small data-en="Our story in one place" data-te="మన కథ అంతా ఒక్కచోట">Our story in one place</small></button>
 <button class="navcard" onclick="document.getElementById('final').scrollIntoView({behavior:'smooth'})"><i>🎁</i><strong data-en="Final Surprise" data-te="చివరి సర్ప్రైజ్">Final Surprise</strong><small data-en="One last message" data-te="ఒక చివరి మెసేజ్">One last message</small></button>
 </div>
 
@@ -215,13 +242,53 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
  </div>
 </section>
 
-<section class="chapter">
- <div class="chapter-head"><div class="eyebrow">JUST BETWEEN US</div><h3 data-en="One Secret Message 🔐" data-te="ఒక సీక్రెట్ మెసేజ్ 🔐">One Secret Message 🔐</h3><p data-en="Only Pavani gets to unlock this." data-te="దీన్ని పవని మాత్రమే అన్‌లాక్ చేయాలి.">Only Pavani gets to unlock this.</p></div>
- <div class="secret glass"><div class="lock">🔐</div><p data-en="Hint: the person who made this little world for you…" data-te="హింట్: నీ కోసం ఈ చిన్న ప్రపంచాన్ని తయారు చేసిన వ్యక్తి…">Hint: the person who made this little world for you…</p><input id="secretInput" placeholder="Enter name…" autocomplete="off"><br><button class="cta" onclick="unlockSecret()">Unlock My Message →</button><div class="secret-msg" id="secretMsg">Pavani… come here. I owe you a very big hug. ❤️</div></div>
+<section class="chapter" id="roseGarden">
+ <div class="chapter-head"><div class="eyebrow">CHAPTER • BLOOM WITH ME</div><h3 data-en="Our Rose Garden 🌹" data-te="మన రోజ్ గార్డెన్ 🌹">Our Rose Garden 🌹</h3><p data-en="Tap each rose. Every bloom has a little piece of my heart." data-te="ప్రతి రోజ్‌ని ట్యాప్ చెయ్యి. ప్రతి బ్లూమ్‌లో నా హార్ట్‌లోని ఒక చిన్న భాగం ఉంది.">Tap each rose. Every bloom has a little piece of my heart.</p></div>
+ <div class="rose-garden">
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">01</span><span class="rose-text" data-en="Your smile is still my favorite view. ❤️" data-te="నీ స్మైల్ ఇప్పటికీ నాకు ఫేవరెట్ వ్యూ. ❤️">Your smile is still my favorite view. ❤️</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">02</span><span class="rose-text" data-en="You make ordinary days feel special." data-te="నువ్వు సాధారణ రోజులను కూడా స్పెషల్‌గా చేస్తావు.">You make ordinary days feel special.</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">03</span><span class="rose-text" data-en="Your hugs are my favorite reset button. 🫶" data-te="నీ హగ్స్ నా ఫేవరెట్ రీసెట్ బటన్. 🫶">Your hugs are my favorite reset button. 🫶</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">04</span><span class="rose-text" data-en="I love the little things you do without noticing." data-te="నువ్వు తెలియకుండానే చేసే చిన్న చిన్న పనులు నాకు చాలా ఇష్టం.">I love the little things you do without noticing.</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">05</span><span class="rose-text" data-en="I would choose your hand to hold again and again. ❤️" data-te="మళ్లీ మళ్లీ పట్టుకోవాల్సిన చెయ్యి ఏదైనా ఉంటే… అది నీదే. ❤️">I would choose your hand to hold again and again. ❤️</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">06</span><span class="rose-text" data-en="Even our silly moments are precious to me. 😂" data-te="మన అల్లరి క్షణాలు కూడా నాకు చాలా విలువైనవి. 😂">Even our silly moments are precious to me. 😂</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">07</span><span class="rose-text" data-en="You feel like home, wherever we are." data-te="మనం ఎక్కడ ఉన్నా… నువ్వుంటే అదే నా హోమ్.">You feel like home, wherever we are.</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">08</span><span class="rose-text" data-en="There are still so many memories I want with you." data-te="నీతో ఇంకా ఎన్నో జ్ఞాపకాలు కావాలి.">There are still so many memories I want with you.</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">09</span><span class="rose-text" data-en="You are my favorite person to annoy forever. 😏❤️" data-te="ఎప్పటికీ అల్లరి చేయడానికి నా ఫేవరెట్ పర్సన్ నువ్వే. 😏❤️">You are my favorite person to annoy forever. 😏❤️</span></button>
+  <button class="rose-bloom glass" onclick="bloomRose(this)"><span class="rose-icon">🌹</span><span class="rose-label">10</span><span class="rose-text" data-en="And after every reason… it is still simply you. ♾️" data-te="అన్ని కారణాల తర్వాత కూడా… చివరికి నువ్వే. ♾️">And after every reason… it is still simply you. ♾️</span></button>
+ </div>
+</section>
+
+<section class="chapter" id="vault">
+ <div class="chapter-head"><div class="eyebrow">CLASSIFIED • JUST BETWEEN US</div><h3 data-en="Secret Vault 🔐" data-te="సీక్రెట్ వాల్ట్ 🔐">Secret Vault 🔐</h3><p data-en="There is one message here that belongs only to you." data-te="ఇక్కడ నీ కోసం మాత్రమే ఉన్న ఒక మెసేజ్ ఉంది.">There is one message here that belongs only to you.</p></div>
+ <div class="vault glass">
+  <div class="vault-orb">🔐</div>
+  <p data-en="Hint: the person who made this little world for you…" data-te="హింట్: నీ కోసం ఈ చిన్న ప్రపంచాన్ని తయారు చేసిన వ్యక్తి…">Hint: the person who made this little world for you…</p>
+  <input id="secretInput" placeholder="Enter the secret name…" data-en-placeholder="Enter the secret name…" data-te-placeholder="సీక్రెట్ పేరు ఎంటర్ చెయ్యి…" autocomplete="off">
+  <br><button class="cta" onclick="unlockSecret()">Unlock The Vault →</button>
+  <div class="vault-message" id="secretMsg">
+   <div class="big-secret" data-en="You found it, Pavani… ❤️" data-te="దొరికేసింది పవని… ❤️">You found it, Pavani… ❤️</div>
+   <p data-en="My biggest secret is not really a secret: I still fall for you in the smallest moments. Your smile, your voice, your hugs… and the way you make ordinary life feel like something worth celebrating." data-te="నా పెద్ద సీక్రెట్ నిజానికి సీక్రెట్ కాదు: చిన్న చిన్న క్షణాల్లో కూడా నేను మళ్లీ మళ్లీ నీ ప్రేమలో పడుతూనే ఉంటాను. నీ స్మైల్, నీ వాయిస్, నీ హగ్స్… సాధారణ జీవితాన్ని కూడా సెలబ్రేట్ చేయాలనిపించేలా చేస్తావు.">My biggest secret is not really a secret: I still fall for you in the smallest moments. Your smile, your voice, your hugs… and the way you make ordinary life feel like something worth celebrating.</p>
+   <div class="signature">Always yours, John ❤️</div>
+  </div>
+ </div>
 </section>
 
 <section class="chapter" id="final">
  <div class="final"><div class="final-content"><div class="final-heart">💖</div><div class="eyebrow">ONE LAST SURPRISE</div><h3 data-en="Happy Birthday, Pavani ❤️" data-te="హ్యాపీ బర్త్‌డే, పవని ❤️">Happy Birthday, Pavani ❤️</h3><p data-en="You are my favorite chapter, my favorite person and my favorite future. Thank you for being you. I would choose you again, in every version of this life." data-te="నువ్వే నా ఫేవరెట్ చాప్టర్, నా ఫేవరెట్ పర్సన్, నా ఫేవరెట్ ఫ్యూచర్. నువ్వు నువ్వుగా ఉన్నందుకు థ్యాంక్యూ. ఈ జీవితంలో ఎన్ని సార్లు అవకాశం వచ్చినా… మళ్లీ నిన్నే ఎంచుకుంటాను.">You are my favorite chapter, my favorite person and my favorite future. Thank you for being you. I would choose you again, in every version of this life.</p><div class="final-choice"><button class="cta" onclick="chooseAgain('yes')">❤️ <span data-en="I choose you again" data-te="మళ్లీ నిన్నే ఎంచుకుంటా">I choose you again</span></button><button class="outline" onclick="chooseAgain('also')">😏 <span data-en="Obviously… next question!" data-te="అది అడగాలా… నెక్స్ట్ క్వెషన్!">Obviously… next question!</span></button></div><div class="choice-note" id="finalChoiceNote"></div><button class="cta" onclick="finale()">🎁 <span data-en="Open My Final Message" data-te="నా చివరి మెసేజ్ ఓపెన్ చెయ్యి">Open My Final Message</span></button></div></div>
+</section>
+<section class="chapter" id="us">
+ <div class="chapter-head"><div class="eyebrow">THE END • OR MAYBE THE BEGINNING</div><h3 data-en="Final Us ❤️" data-te="మన చివరి పేజీ ❤️">Final Us ❤️</h3><p data-en="Everything you just unlocked comes down to one thing: us." data-te="నువ్వు ఇప్పటివరకు అన్‌లాక్ చేసిన ప్రతిదీ చివరికి ఒక్క మాటే చెబుతుంది: మనం.">Everything you just unlocked comes down to one thing: us.</p></div>
+ <div class="us-screen">
+  <div class="us-content">
+   <div class="us-symbol">💞</div>
+   <div class="eyebrow">PAVANI × JOHN</div>
+   <h3 data-en="You + Me = Us" data-te="నువ్వు + నేను = మనం">You + Me = Us</h3>
+   <p data-en="10 memories. 20 reasons. 3 heart secrets. A garden full of roses. One secret vault. And a lifetime of chapters still waiting for us." data-te="10 జ్ఞాపకాలు. 20 కారణాలు. 3 హార్ట్ సీక్రెట్స్. రోజెస్‌తో నిండిన గార్డెన్. ఒక సీక్రెట్ వాల్ట్. ఇంకా మన కోసం ఎదురుచూస్తున్న జీవితకాలపు చాప్టర్స్.">10 memories. 20 reasons. 3 heart secrets. A garden full of roses. One secret vault. And a lifetime of chapters still waiting for us.</p>
+   <div class="us-stats"><div class="us-stat"><strong>10</strong><span data-en="MEMORIES" data-te="జ్ఞాపకాలు">MEMORIES</span></div><div class="us-stat"><strong>20</strong><span data-en="REASONS</span data-te="కారణాలు">REASONS</span></div><div class="us-stat"><strong>∞%</strong><span data-en="LOVE" data-te="ప్రేమ">LOVE</span></div><div class="us-stat"><strong>1</strong><span data-en="US" data-te="మనం">US</span></div></div>
+   <div class="us-sign" data-en="And I would choose you again. Always. ❤️" data-te="మళ్లీ నిన్నే ఎంచుకుంటాను. ఎప్పటికీ. ❤️">And I would choose you again. Always. ❤️</div>
+   <button class="cta" onclick="burst()">♡ Keep This Moment</button>
+  </div>
+ </div>
 </section>
 <div class="footer">Made with love, memories & a little magic by John ❤️</div>
 
@@ -276,7 +343,8 @@ function openModal(type){const m=document.getElementById('modal'),c=document.get
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 document.querySelector('.letter').onclick=()=>openModal('letter');
 function quizAnswer(){document.getElementById('quizResult').style.display='block';burst();}
-function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').style.display='block';burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
+function bloomRose(el){el.classList.toggle('open');burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
+function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').classList.add('show');burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
 let activeSong=1,songPlaying=false;
 function getSong(){return document.getElementById('song'+activeSong)}
 function updateSongUI(){const icon=document.getElementById('playIcon');icon.textContent=songPlaying?'❚❚':'▶';}
@@ -368,7 +436,7 @@ function startLoveMeter(){
   let n=0;clearInterval(window.meterTimer);window.meterTimer=setInterval(()=>{n+=4;if(n>=100){n=100;clearInterval(window.meterTimer);value.textContent='∞%';burst();}else value.textContent=n+'%';},55);
 }
 function burst(){for(let i=0;i<45;i++){const e=document.createElement('div');e.textContent=['❤','💗','✨','🌸','💕'][i%5];e.style.position='fixed';e.style.left='50%';e.style.top='55%';e.style.zIndex='220';e.style.pointerEvents='none';e.style.fontSize=(14+Math.random()*25)+'px';const x=Math.random()*720-360,y=Math.random()*650-325,r=Math.random()*360;e.animate([{transform:'translate(-50%,-50%) scale(.2)',opacity:1},{transform:'translate(calc(-50% + '+x+'px),calc(-50% + '+y+'px)) rotate('+r+'deg) scale(1)',opacity:0}],{duration:1500,easing:'cubic-bezier(.2,.7,.2,1)'});document.body.appendChild(e);setTimeout(()=>e.remove(),1550)}}
-function finale(){burst();openModal('letter');setTimeout(()=>{document.getElementById('final').scrollIntoView({behavior:'smooth'})},500)}
+function finale(){burst();openModal('letter');setTimeout(()=>{closeModal();document.getElementById('us').scrollIntoView({behavior:'smooth'})},2200)}
 for(let i=0;i<45;i++){const e=document.createElement('div');e.className='petal';e.textContent=['❤','♡','💗','✦','🌸'][i%5];e.style.left=Math.random()*100+'vw';e.style.fontSize=(11+Math.random()*23)+'px';e.style.animationDuration=(8+Math.random()*11)+'s';e.style.animationDelay=(-Math.random()*15)+'s';document.getElementById('decor').appendChild(e)}
 for(let i=0;i<25;i++){const e=document.createElement('div');e.className='spark';e.style.left=Math.random()*100+'vw';e.style.top=Math.random()*100+'vh';e.style.animationDelay=(-Math.random()*4)+'s';document.getElementById('decor').appendChild(e)}
 renderCinema();resetTimer();renderReasons();
