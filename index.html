@@ -294,7 +294,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
 
-<audio id="song1" preload="none" src="song1.mp3"></audio><audio id="song2" preload="none" src="song2.mp3"></audio><audio id="heartbeatSfx" preload="auto" src="heartbeat.mp3"></audio><audio id="roseSfx" preload="auto" src="rose-chime.mp3"></audio><audio id="unlockSfx" preload="auto" src="unlock.mp3"></audio>
+<audio id="song1" preload="none" src="song1.mp3"></audio><audio id="song2" preload="none" src="song2.mp3"></audio><audio id="heartbeatSfx" preload="auto" src="heartbeat.mp3"></audio><audio id="roseSfx" preload="auto" src="rose-chime.mp3"></audio><audio id="unlockSfx" preload="auto" src="unlock.mp3"></audio><audio id="finalHitSfx" preload="auto" src="final-hit.mp3"></audio>
 <script>
 const photos=['photo1.png','photo2.png','photo3.png','photo4.png','photo5.png','photo6.png','photo7.jpeg','photo8.jpeg','photo9.png','photo10.jpeg'];
 const captions=[
@@ -343,7 +343,7 @@ function openModal(type){const m=document.getElementById('modal'),c=document.get
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 document.querySelector('.letter').onclick=()=>openModal('letter');
 function quizAnswer(){document.getElementById('quizResult').style.display='block';burst();}
-function playSfx(id,volume=.55){const a=document.getElementById(id);if(!a)return;a.currentTime=0;a.volume=volume;const p=a.play();if(p&&p.catch)p.catch(()=>{});}\nfunction bloomRose(el){el.classList.toggle('open');if(el.classList.contains('open'))playSfx('roseSfx',.45);burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
+function playFinalHit(){const a=document.getElementById('finalHitSfx');if(!a)return;a.currentTime=0;a.volume=.58;const p=a.play();if(p&&p.catch)p.catch(()=>{});}\nfunction playSfx(id,volume=.55){const a=document.getElementById(id);if(!a)return;a.currentTime=0;a.volume=volume;const p=a.play();if(p&&p.catch)p.catch(()=>{});}\nfunction bloomRose(el){el.classList.toggle('open');if(el.classList.contains('open'))playSfx('roseSfx',.45);burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
 function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').classList.add('show');playSfx('unlockSfx',.5);burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
 let activeSong=1,songPlaying=false;
 function getSong(){return document.getElementById('song'+activeSong)}
@@ -436,7 +436,7 @@ function startLoveMeter(){
   let n=0;clearInterval(window.meterTimer);window.meterTimer=setInterval(()=>{n+=4;if(n>=100){n=100;clearInterval(window.meterTimer);value.textContent='∞%';burst();}else value.textContent=n+'%';},55);
 }
 function burst(){for(let i=0;i<45;i++){const e=document.createElement('div');e.textContent=['❤','💗','✨','🌸','💕'][i%5];e.style.position='fixed';e.style.left='50%';e.style.top='55%';e.style.zIndex='220';e.style.pointerEvents='none';e.style.fontSize=(14+Math.random()*25)+'px';const x=Math.random()*720-360,y=Math.random()*650-325,r=Math.random()*360;e.animate([{transform:'translate(-50%,-50%) scale(.2)',opacity:1},{transform:'translate(calc(-50% + '+x+'px),calc(-50% + '+y+'px)) rotate('+r+'deg) scale(1)',opacity:0}],{duration:1500,easing:'cubic-bezier(.2,.7,.2,1)'});document.body.appendChild(e);setTimeout(()=>e.remove(),1550)}}
-function finale(){burst();openModal('letter');setTimeout(()=>{closeModal();document.getElementById('us').scrollIntoView({behavior:'smooth'})},2200)}
+function finale(){playFinalHit();burst();openModal('letter');setTimeout(()=>{closeModal();document.getElementById('us').scrollIntoView({behavior:'smooth'})},2200)}
 for(let i=0;i<45;i++){const e=document.createElement('div');e.className='petal';e.textContent=['❤','♡','💗','✦','🌸'][i%5];e.style.left=Math.random()*100+'vw';e.style.fontSize=(11+Math.random()*23)+'px';e.style.animationDuration=(8+Math.random()*11)+'s';e.style.animationDelay=(-Math.random()*15)+'s';document.getElementById('decor').appendChild(e)}
 for(let i=0;i<25;i++){const e=document.createElement('div');e.className='spark';e.style.left=Math.random()*100+'vw';e.style.top=Math.random()*100+'vh';e.style.animationDelay=(-Math.random()*4)+'s';document.getElementById('decor').appendChild(e)}
 renderCinema();resetTimer();renderReasons();
