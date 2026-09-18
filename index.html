@@ -28,6 +28,36 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
 @keyframes pulse{50%{transform:scale(1.08)}}@keyframes load{50%{transform:translateX(220%)}}@keyframes float{0%{transform:translateY(0) rotate(0);opacity:0}12%{opacity:.85}100%{transform:translateY(-115vh) translateX(80px) rotate(360deg);opacity:0}}@keyframes spark{50%{opacity:1;transform:scale(1.8)}}
 @media(max-width:1000px){.hero{grid-template-columns:1fr;min-height:720px}.hero-bg img{width:100%;opacity:.5}.hero-bg:after{background:linear-gradient(90deg,rgba(16,3,10,.9),rgba(16,3,10,.45)),linear-gradient(0deg,#10030a,transparent 60%)}.hero-copy{text-align:center}.quote,.tags{margin-left:auto;margin-right:auto}.tags{justify-content:center}.hero-actions{justify-content:center}.side-note{display:none}.navcards{grid-template-columns:repeat(3,1fr)}.story{grid-template-columns:1fr}.future{grid-template-columns:repeat(2,1fr)}.thumbs{grid-template-columns:repeat(5,1fr)}}
 @media(max-width:650px){.top{top:8px;padding:0 7px}.song{padding:7px}.song b,.song small,.made b,.made small{display:none}.langs{margin:auto}.lang{padding:8px 9px}.made{padding:8px}.hero{padding:105px 20px 55px;min-height:700px}.hero h2{font-size:60px}.quote{font-size:19px}.chapter{padding:55px 16px}.chapter h3{font-size:39px}.navcards{grid-template-columns:repeat(2,1fr);margin-top:-24px}.navcard{min-height:100px}.cinema{min-height:570px}.slide-copy{left:20px;right:20px;bottom:42px}.slide-copy h4{font-size:31px}.slide-copy p{font-size:18px}.progress{left:20px;right:20px;bottom:13px}.cinema-nav{right:18px;bottom:22px}.thumbs{gap:5px}.thumbs button{height:62px}.tiles,.promise{grid-template-columns:1fr}.future{grid-template-columns:1fr}.story-img{min-height:410px}.letter{padding:27px}.final{min-height:580px}.final h3{font-size:45px}.final p{font-size:19px}.modal-box{padding:29px 22px}.intro-card{padding:20px}.intro h1{font-size:45px}}
+
+/* Interactive love experience */
+.interactive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.love-card,.date-card,.when-card{padding:24px;min-height:170px;position:relative;overflow:hidden;transition:.28s;cursor:pointer}
+.love-card:hover,.date-card:hover,.when-card:hover{transform:translateY(-6px) scale(1.01);border-color:#ff8bb7;box-shadow:0 18px 45px rgba(255,55,130,.18)}
+.love-card .big,.date-card .big,.when-card .big{font-size:34px}
+.love-card h4,.date-card h4,.when-card h4{font-family:'Cormorant Garamond';font-size:25px;font-weight:500;margin:10px 0 5px}
+.love-card p,.date-card p,.when-card p{color:#d8b2c0;font-size:12px;line-height:1.55;margin:0}
+.reason-number{position:absolute;right:16px;top:12px;color:rgba(255,150,190,.35);font-size:11px;letter-spacing:2px}
+.heart-stage{max-width:900px;margin:auto;padding:38px;text-align:center}
+.tap-heart{width:150px;height:150px;border-radius:50%;border:1px solid rgba(255,176,207,.5);background:radial-gradient(circle,rgba(255,78,145,.34),rgba(255,255,255,.04) 60%);font-size:76px;box-shadow:0 0 55px rgba(255,56,135,.28);transition:.2s}
+.tap-heart:active{transform:scale(.9)}
+.heart-count{font-family:'Cormorant Garamond';font-size:22px;color:#ffb1cc;margin:18px 0 4px}
+.heart-message{min-height:42px;font-family:'Great Vibes';font-size:30px;color:#ffd3e2}
+.meter{max-width:900px;margin:auto;padding:35px;text-align:center}
+.meter-track{height:24px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,159,198,.25);overflow:hidden;margin:25px 0 10px}
+.meter-fill{height:100%;width:0;background:linear-gradient(90deg,#ff3d83,#ffb2ce,#fff);box-shadow:0 0 30px rgba(255,70,140,.6);transition:width 2.5s cubic-bezier(.2,.8,.2,1)}
+.meter-value{font-family:'Great Vibes';font-size:42px;color:#ff9fc5}
+.date-card.selected{border-color:#ffd0df;background:linear-gradient(145deg,rgba(255,70,140,.24),rgba(70,10,30,.8));box-shadow:0 0 35px rgba(255,67,140,.22)}
+.when-card{min-height:150px}
+.when-card:after{content:'♡';position:absolute;right:-8px;bottom:-22px;font-size:110px;color:rgba(255,255,255,.035);font-family:serif}
+.when-reveal{display:none;margin-top:16px;padding:15px;border-radius:16px;background:rgba(255,255,255,.05);color:#f1d9e2;font-family:'Cormorant Garamond';font-size:19px;line-height:1.5}
+.when-card.open .when-reveal{display:block;animation:fadeUp .4s ease}
+.final-choice{margin:26px auto 0;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.final-choice button{min-width:180px}
+.choice-note{min-height:30px;margin-top:15px;color:#ffb0ca;font-family:'Great Vibes';font-size:29px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.interactive-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.interactive-grid{grid-template-columns:1fr}.heart-stage,.meter{padding:27px 18px}.tap-heart{width:125px;height:125px;font-size:62px}.final-choice button{width:100%}}
+
 </style>
 </head>
 <body>
@@ -69,7 +99,12 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
  <button class="navcard" onclick="document.getElementById('little').scrollIntoView({behavior:'smooth'})"><i>💗</i><strong data-en="Little Things" data-te="చిన్న విషయాలు">Little Things</strong><small data-en="I love about you" data-te="నీలో నాకు నచ్చేవి">I love about you</small></button>
  <button class="navcard" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})"><i>💬</i><strong data-en="Fun Questions" data-te="ఫన్ ప్రశ్నలు">Fun Questions</strong><small data-en="Let's play" data-te="ఆడుకుందాం">Let's play</small></button>
  <button class="navcard" onclick="document.getElementById('future').scrollIntoView({behavior:'smooth'})"><i>✈️</i><strong data-en="Our Future" data-te="మన భవిష్యత్తు">Our Future</strong><small data-en="Dreams together" data-te="కలిసి కనే కలలు">Dreams together</small></button>
- <button class="navcard" onclick="document.getElementById('final').scrollIntoView({behavior:'smooth'})"><i>🎁</i><strong data-en="Final Surprise" data-te="చివరి సర్ప్రైజ్">Final Surprise</strong><small data-en="One last message" data-te="ఒక చివరి మెసేజ్">One last message</small></button>
+ <button class="navcard" onclick="document.getElementById('reasons').scrollIntoView({behavior:'smooth'})"><i>💌</i><strong data-en="20 Reasons" data-te="20 కారణాలు">20 Reasons</strong><small data-en="Why I choose you" data-te="నిన్నే ఎందుకు ఎంచుకుంటానంటే">Why I choose you</small></button>
+ <button class="navcard" onclick="document.getElementById('heart').scrollIntoView({behavior:'smooth'})"><i>💓</i><strong data-en="Tap My Heart" data-te="నా హార్ట్ ట్యాప్ చెయ్యి">Tap My Heart</strong><small data-en="Three little surprises" data-te="మూడు చిన్న సర్ప్రైజులు">Three little surprises</small></button>
+ <button class="navcard" onclick="document.getElementById('date').scrollIntoView({behavior:'smooth'})"><i>🌙</i><strong data-en="Choose Our Date" data-te="మన డేట్ ఎంచుకో">Choose Our Date</strong><small data-en="You decide" data-te="నువ్వే డిసైడ్ చెయ్యి">You decide</small></button>
+ <button class="navcard" onclick="document.getElementById('when').scrollIntoView({behavior:'smooth'})"><i>💌</i><strong data-en="Open When…" data-te="ఎప్పుడు ఓపెన్ చేయాలి…">Open When…</strong><small data-en="Little love notes" data-te="చిన్న ప్రేమ మాటలు">Little love notes</small></button>
+ <button class="navcard" onclick="document.getElementById('meter').scrollIntoView({behavior:'smooth'})"><i>♾️</i><strong data-en="Love Meter" data-te="లవ్ మీటర్">Love Meter</strong><small data-en="No maximum" data-te="మ్యాక్సిమమ్ లేదు">No maximum</small></button>
+<button class="navcard" onclick="document.getElementById('final').scrollIntoView({behavior:'smooth'})"><i>🎁</i><strong data-en="Final Surprise" data-te="చివరి సర్ప్రైజ్">Final Surprise</strong><small data-en="One last message" data-te="ఒక చివరి మెసేజ్">One last message</small></button>
 </div>
 
 <section class="chapter" id="story">
@@ -107,6 +142,48 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
  <div class="quiz glass"><div style="font-size:44px">💗</div><h4 data-en="Who is more in love?" data-te="ఎవరికి ఎవరిపై ఎక్కువ ప్రేమ?">Who is more in love?</h4><div class="answers"><button onclick="quizAnswer()">A. John 😎</button><button onclick="quizAnswer()">B. Pavani 😌</button><button onclick="quizAnswer()">C. Both… but John will argue it's him 😏</button></div><div class="result" id="quizResult" data-en="Correct answer: BOTH ❤️ But John has submitted an official appeal. 😂" data-te="కరెక్ట్ ఆన్సర్: ఇద్దరూ ❤️ కానీ జాన్ మాత్రం తనకే ఎక్కువ అని అప్పీల్ చేశాడు. 😂">Correct answer: BOTH ❤️ But John has submitted an official appeal. 😂</div></div>
 </section>
 
+
+<section class="chapter" id="reasons">
+ <div class="chapter-head"><div class="eyebrow">CHAPTER 05 • JUST FOR YOU</div><h3 data-en="20 Reasons I Choose You ❤️" data-te="నేను నిన్నే ఎంచుకునే 20 కారణాలు ❤️">20 Reasons I Choose You ❤️</h3><p data-en="Tap any card. Some are sweet. Some are a little naughty. 😏" data-te="ఏ కార్డ్ అయినా ట్యాప్ చెయ్యి. కొన్ని స్వీట్… కొన్ని కొంచెం అల్లరి. 😏">Tap any card. Some are sweet. Some are a little naughty. 😏</p></div>
+ <div class="interactive-grid" id="reasonsGrid"></div>
+</section>
+
+<section class="chapter" id="heart">
+ <div class="chapter-head"><div class="eyebrow">A LITTLE GAME</div><h3 data-en="Tap My Heart 💓" data-te="నా హార్ట్‌ని ట్యాప్ చెయ్యి 💓">Tap My Heart 💓</h3><p data-en="Three taps. Three secrets. Don't stop at one. 😉" data-te="మూడు ట్యాప్స్. మూడు సీక్రెట్స్. ఒక్కటితో ఆపొద్దు. 😉">Three taps. Three secrets. Don't stop at one. 😉</p></div>
+ <div class="heart-stage glass">
+   <button class="tap-heart" onclick="tapHeart()">💗</button>
+   <div class="heart-count" id="heartCount">0 / 3</div>
+   <div class="heart-message" id="heartMessage" data-en="Tap the heart, birthday girl…" data-te="బర్త్‌డే గర్ల్… హార్ట్‌ని ట్యాప్ చెయ్యి…">Tap the heart, birthday girl…</div>
+ </div>
+</section>
+
+<section class="chapter" id="date">
+ <div class="chapter-head"><div class="eyebrow">YOU DECIDE</div><h3 data-en="Choose Our Next Date 🌙" data-te="మన నెక్స్ట్ డేట్ ఎంచుకో 🌙">Choose Our Next Date 🌙</h3><p data-en="Pick one. I promise to make it special." data-te="ఒక్కటి ఎంచుకో. దాన్ని స్పెషల్‌గా చేస్తానని ప్రామిస్.">Pick one. I promise to make it special.</p></div>
+ <div class="interactive-grid">
+   <button class="date-card glass" onclick="chooseDate(this,'beach')"><div class="big">🌊</div><h4 data-en="Beach Evening" data-te="బీచ్ ఈవెనింగ్">Beach Evening</h4><p data-en="Sunset, breeze, snacks and you next to me." data-te="సన్‌సెట్, చల్లని గాలి, స్నాక్స్… నా పక్కన నువ్వు.">Sunset, breeze, snacks and you next to me.</p></button>
+   <button class="date-card glass" onclick="chooseDate(this,'mountains')"><div class="big">⛰️</div><h4 data-en="Mountain Escape" data-te="మౌంటెన్ ఎస్కేప్">Mountain Escape</h4><p data-en="Cold weather, long drives and one tiny room with a giant view." data-te="చల్లని వాతావరణం, లాంగ్ డ్రైవ్… పెద్ద వ్యూ ఉన్న చిన్న రూమ్.">Cold weather, long drives and one tiny room with a giant view.</p></button>
+   <button class="date-card glass" onclick="chooseDate(this,'night')"><div class="big">🏍️</div><h4 data-en="Night Ride" data-te="నైట్ రైడ్">Night Ride</h4><p data-en="Just us, the road, music and a little bit of adventure." data-te="మనిద్దరం, రోడ్, మ్యూజిక్… కొంచెం అడ్వెంచర్.">Just us, the road, music and a little bit of adventure.</p></button>
+ </div>
+ <div class="choice-note" id="dateNote"></div>
+</section>
+
+<section class="chapter" id="when">
+ <div class="chapter-head"><div class="eyebrow">OPEN WHEN…</div><h3 data-en="Little Love Envelopes 💌" data-te="చిన్న ప్రేమ లెటర్స్ 💌">Little Love Envelopes 💌</h3><p data-en="Open one whenever that moment comes." data-te="ఆ క్షణం వచ్చినప్పుడు ఒక్కదాన్ని ఓపెన్ చెయ్యి.">Open one whenever that moment comes.</p></div>
+ <div class="interactive-grid">
+   <button class="when-card glass" onclick="toggleWhen(this)"><div class="big">🥺</div><h4 data-en="Open when you miss me" data-te="నన్ను మిస్ అయినప్పుడు ఓపెన్ చెయ్యి">Open when you miss me</h4><div class="when-reveal" data-en="Close your eyes for 5 seconds. Imagine my arms around you. Now smile. I'm probably missing you too. ❤️" data-te="5 సెకండ్స్ కళ్ళు మూసుకో. నేను నిన్ను హగ్ చేసుకున్నట్టు ఊహించుకో. ఇప్పుడు స్మైల్ చెయ్యి. నేనూ నిన్ను మిస్ అవుతున్నా. ❤️">Close your eyes for 5 seconds. Imagine my arms around you. Now smile. I'm probably missing you too. ❤️</div></button>
+   <button class="when-card glass" onclick="toggleWhen(this)"><div class="big">😤</div><h4 data-en="Open when you're angry with me" data-te="నా మీద కోపంగా ఉన్నప్పుడు ఓపెన్ చెయ్యి">Open when you're angry with me</h4><div class="when-reveal" data-en="Okay okay… I know. 😅 First, come here. Then we'll talk. And yes, I'm bringing a hug as my peace offering. ❤️" data-te="సరే సరే… తెలుసు. 😅 ముందు ఇక్కడికి రా. తర్వాత మాట్లాడుకుందాం. శాంతి ఒప్పందంగా ఒక హగ్ కూడా ఉంది. ❤️">Okay okay… I know. 😅 First, come here. Then we'll talk. And yes, I'm bringing a hug as my peace offering. ❤️</div></button>
+   <button class="when-card glass" onclick="toggleWhen(this)"><div class="big">💋</div><h4 data-en="Open when you want a kiss" data-te="కిస్ కావాలనిపించినప్పుడు ఓపెన్ చెయ్యి">Open when you want a kiss</h4><div class="when-reveal" data-en="Official voucher: 1 kiss. Valid forever. Fine print: may become 2… or 10. 😏❤️" data-te="ఆఫిషియల్ వోచర్: 1 కిస్. వ్యాలిడిటీ: ఎప్పటికీ. ఫైన్ ప్రింట్: 2… లేదా 10 అయ్యే ఛాన్స్ ఉంది. 😏❤️">Official voucher: 1 kiss. Valid forever. Fine print: may become 2… or 10. 😏❤️</div></button>
+   <button class="when-card glass" onclick="toggleWhen(this)"><div class="big">🌧️</div><h4 data-en="Open when you had a bad day" data-te="నీ రోజు బాగాలేనప్పుడు ఓపెన్ చెయ్యి">Open when you had a bad day</h4><div class="when-reveal" data-en="Today doesn't define tomorrow. Come to me. We'll eat something good, talk nonsense and reset. 🫶" data-te="ఈ రోజు బాగోలేదని రేపు కూడా అలాగే ఉండదు. నా దగ్గరికి రా. ఏదైనా బాగా తిందాం, అర్థంలేని మాటలు మాట్లాడుకుందాం, రీసెట్ అవుదాం. 🫶">Today doesn't define tomorrow. Come to me. We'll eat something good, talk nonsense and reset. 🫶</div></button>
+   <button class="when-card glass" onclick="toggleWhen(this)"><div class="big">🎂</div><h4 data-en="Open on your next birthday" data-te="నీ నెక్స్ట్ బర్త్‌డే రోజు ఓపెన్ చెయ్యి">Open on your next birthday</h4><div class="when-reveal" data-en="If you're reading this next year, congratulations: you still haven't got rid of me. 😂❤️ Here's to another year of us." data-te="నెక్స్ట్ ఇయర్ ఇది చదువుతున్నావంటే… కంగ్రాట్స్: ఇంకా నన్ను వదిలించుకోలేకపోయావు. 😂❤️ మన మరో ఏడాదికి చీర్స్.">If you're reading this next year, congratulations: you still haven't got rid of me. 😂❤️ Here's to another year of us.</div></button>
+   <button class="when-card glass" onclick="toggleWhen(this)"><div class="big">♾️</div><h4 data-en="Open when you need a reminder" data-te="ఒక రిమైండర్ కావాలనిపించినప్పుడు">Open when you need a reminder</h4><div class="when-reveal" data-en="You are loved. You are chosen. You are home. By me. Always. ❤️" data-te="నువ్వు ప్రేమించబడుతున్నావు. నిన్నే ఎంచుకున్నాను. నువ్వే నా ఇల్లు. నా దగ్గర… ఎప్పటికీ. ❤️">You are loved. You are chosen. You are home. By me. Always. ❤️</div></button>
+ </div>
+</section>
+
+<section class="chapter" id="meter">
+ <div class="chapter-head"><div class="eyebrow">NO LIMIT</div><h3 data-en="Our Love Meter ♾️" data-te="మన లవ్ మీటర్ ♾️">Our Love Meter ♾️</h3><p data-en="Warning: this meter was not designed for unlimited love." data-te="వార్నింగ్: అన్‌లిమిటెడ్ లవ్ కోసం ఈ మీటర్ డిజైన్ చేయలేదు.">Warning: this meter was not designed for unlimited love.</p></div>
+ <div class="meter glass"><div style="font-size:52px">❤️</div><div class="meter-track"><div class="meter-fill" id="meterFill"></div></div><div class="meter-value" id="meterValue">0%</div><br><button class="cta" onclick="startLoveMeter()" data-en="Measure Our Love →" data-te="మన ప్రేమను కొలుద్దాం →">Measure Our Love →</button></div>
+</section>
+
 <section class="chapter" id="future">
  <div class="chapter-head"><div class="eyebrow">CHAPTER 05</div><h3 data-en="Our Story Isn't Finished… ✨" data-te="మన కథ ఇంకా పూర్తికాలేదు… ✨">Our Story Isn't Finished… ✨</h3><p data-en="More life. More memories. Together." data-te="ఇంకా జీవితం. ఇంకా జ్ఞాపకాలు. కలిసి.">More life. More memories. Together.</p></div>
  <div class="future">
@@ -135,12 +212,13 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
 </section>
 
 <section class="chapter" id="final">
- <div class="final"><div class="final-content"><div class="final-heart">💖</div><div class="eyebrow">ONE LAST SURPRISE</div><h3 data-en="Happy Birthday, Pavani ❤️" data-te="హ్యాపీ బర్త్‌డే, పవని ❤️">Happy Birthday, Pavani ❤️</h3><p data-en="You are my favorite chapter, my favorite person and my favorite future. Thank you for being you. I would choose you again, in every version of this life." data-te="నువ్వే నా ఫేవరెట్ చాప్టర్, నా ఫేవరెట్ పర్సన్, నా ఫేవరెట్ ఫ్యూచర్. నువ్వు నువ్వుగా ఉన్నందుకు థ్యాంక్యూ. ఈ జీవితంలో ఎన్ని సార్లు అవకాశం వచ్చినా… మళ్లీ నిన్నే ఎంచుకుంటాను.">You are my favorite chapter, my favorite person and my favorite future. Thank you for being you. I would choose you again, in every version of this life.</p><button class="cta" onclick="finale()">🎁 <span data-en="Open My Final Message" data-te="నా చివరి మెసేజ్ ఓపెన్ చెయ్యి">Open My Final Message</span></button></div></div>
+ <div class="final"><div class="final-content"><div class="final-heart">💖</div><div class="eyebrow">ONE LAST SURPRISE</div><h3 data-en="Happy Birthday, Pavani ❤️" data-te="హ్యాపీ బర్త్‌డే, పవని ❤️">Happy Birthday, Pavani ❤️</h3><p data-en="You are my favorite chapter, my favorite person and my favorite future. Thank you for being you. I would choose you again, in every version of this life." data-te="నువ్వే నా ఫేవరెట్ చాప్టర్, నా ఫేవరెట్ పర్సన్, నా ఫేవరెట్ ఫ్యూచర్. నువ్వు నువ్వుగా ఉన్నందుకు థ్యాంక్యూ. ఈ జీవితంలో ఎన్ని సార్లు అవకాశం వచ్చినా… మళ్లీ నిన్నే ఎంచుకుంటాను.">You are my favorite chapter, my favorite person and my favorite future. Thank you for being you. I would choose you again, in every version of this life.</p><div class="final-choice"><button class="cta" onclick="chooseAgain('yes')">❤️ <span data-en="I choose you again" data-te="మళ్లీ నిన్నే ఎంచుకుంటా">I choose you again</span></button><button class="outline" onclick="chooseAgain('also')">😏 <span data-en="Obviously… next question!" data-te="అది అడగాలా… నెక్స్ట్ క్వెషన్!">Obviously… next question!</span></button></div><div class="choice-note" id="finalChoiceNote"></div><button class="cta" onclick="finale()">🎁 <span data-en="Open My Final Message" data-te="నా చివరి మెసేజ్ ఓపెన్ చెయ్యి">Open My Final Message</span></button></div></div>
 </section>
 <div class="footer">Made with love, memories & a little magic by John ❤️</div>
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
 
+<audio id="song1" preload="none" src="song1.mp3"></audio><audio id="song2" preload="none" src="song2.mp3"></audio>
 <script>
 const photos=['photo1.png','photo2.png','photo3.png','photo4.png','photo5.png','photo6.png','photo7.jpeg','photo8.jpeg','photo9.png','photo10.jpeg'];
 const captions=[
@@ -160,12 +238,101 @@ function closeModal(){document.getElementById('modal').classList.remove('show')}
 document.querySelector('.letter').onclick=()=>openModal('letter');
 function quizAnswer(){document.getElementById('quizResult').style.display='block';burst();}
 function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').style.display='block';burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
-function toggleSong(){const icon=document.getElementById('playIcon');try{if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();gain=audioCtx.createGain();gain.gain.value=.025;gain.connect(audioCtx.destination);osc=audioCtx.createOscillator();osc.type='sine';osc.frequency.value=261.63;osc.connect(gain);osc.start();icon.textContent='❚❚'}else if(audioCtx.state==='running'){audioCtx.suspend();icon.textContent='▶'}else{audioCtx.resume();icon.textContent='❚❚'}}catch(e){}}
+let activeSong=1,songPlaying=false;
+function getSong(){return document.getElementById('song'+activeSong)}
+function updateSongUI(){const icon=document.getElementById('playIcon');icon.textContent=songPlaying?'❚❚':'▶';}
+function playSelectedSong(){
+  const a=getSong();
+  if(!a)return;
+  a.volume=.34;
+  const p=a.play();
+  if(p&&p.catch)p.catch(()=>{});
+  songPlaying=true;updateSongUI();
+}
+function toggleSong(){
+  const a=getSong();
+  if(!a)return;
+  if(a.paused){playSelectedSong();}else{a.pause();songPlaying=false;updateSongUI();}
+}
+function playFinalSong(){
+  const first=document.getElementById('song1'),second=document.getElementById('song2');
+  if(first){first.pause();first.currentTime=0;}
+  activeSong=2;
+  if(second){
+    second.volume=.4;
+    const p=second.play();
+    if(p&&p.catch)p.catch(()=>{});
+    songPlaying=true;updateSongUI();
+  }
+}
+function chooseAgain(type){
+  const n=document.getElementById('finalChoiceNote');
+  if(type==='yes'){
+    n.textContent=lang==='en'?'Then come here, birthday girl… I have a hug waiting. ❤️':'అయితే ఇక్కడికి రా బర్త్‌డే గర్ల్… ఒక హగ్ వెయిట్ అవుతోంది. ❤️';
+  }else{
+    n.textContent=lang==='en'?'Correct. 😏 You know me too well.':'కరెక్ట్. 😏 నన్ను చాలా బాగా తెలుసు.';
+  }
+  burst();
+  playFinalSong();
+}
+function tapHeart(){
+  window.heartTaps=(window.heartTaps||0)+1;
+  const messages={
+    en:['First secret: your smile still makes my heart skip. ❤️','Second secret: I still get butterflies around you. 🦋','Third secret: if I had to choose again, I would choose you. Always. ♾️'],
+    te:['మొదటి సీక్రెట్: నీ స్మైల్ చూస్తే ఇప్పటికీ నా హార్ట్ స్కిప్ అవుతుంది. ❤️','రెండో సీక్రెట్: నీ దగ్గర ఉన్నప్పుడు ఇప్పటికీ బటర్‌ఫ్లైస్ ఫీల్ అవుతాయి. 🦋','మూడో సీక్రెట్: మళ్లీ ఎంచుకునే ఛాన్స్ వస్తే… మళ్లీ నిన్నే ఎంచుకుంటా. ఎప్పటికీ. ♾️']
+  };
+  const c=Math.min(window.heartTaps,3);
+  document.getElementById('heartCount').textContent=c+' / 3';
+  document.getElementById('heartMessage').textContent=messages[lang][c-1];
+  burst();
+  if(c===3)document.getElementById('heartMessage').textContent=messages[lang][2]+' 💋';
+}
+const reasons=[
+['🌷','Your smile','Even on an ordinary day, you make everything feel warmer.'],
+['🤍','Your heart','You care deeply, and that is one of the things I treasure most.'],
+['😂','Your laugh','I could listen to it way longer than I admit.'],
+['😏','Your cute anger','Yes… even this somehow makes me smile.'],
+['🫶','Your support','You make difficult days feel less heavy.'],
+['🌙','Our late talks','Some of my favorite memories are just us talking.'],
+['📸','Your moments','You make me want to capture more of life.'],
+['🏍️','Our adventures','The road is more fun when you are beside me.'],
+['🍽️','The little care','The tiny things you do never feel tiny to me.'],
+['💋','That look','You know exactly which look I mean. 😏'],
+['🏡','You feel like home','Home is not a place when you are with me.'],
+['🌸','Your softness','There is a gentleness in you I never want to lose.'],
+['🔥','Your confidence','I love seeing you own who you are.'],
+['🥰','Your hugs','My favorite reset button.'],
+['✨','Your presence','You do not have to do anything. Just being there is enough.'],
+['😄','Our nonsense','Our random conversations are secretly the best.'],
+['🤝','Our team','Whatever comes next, I want us on the same side.'],
+['🌅','Our future','There are still so many beautiful days waiting for us.'],
+['❤️','The way you love','I feel it in the big things and the smallest ones.'],
+['♾️','Simply you','After all the reasons… it still comes down to you.']
+];
+function renderReasons(){
+  const g=document.getElementById('reasonsGrid');if(!g)return;
+  g.innerHTML=reasons.map((r,i)=>'<button class="love-card glass" onclick="reasonPop('+i+')"><span class="reason-number">'+String(i+1).padStart(2,'0')+'</span><div class="big">'+r[0]+'</div><h4>'+r[1]+'</h4><p>'+r[2]+'</p></button>').join('');
+}
+function reasonPop(i){burst();const r=reasons[i];const c=document.getElementById('modalContent');c.innerHTML='<div style="text-align:center"><div style="font-size:52px">'+r[0]+'</div><h3>'+r[1]+'</h3><p>'+r[2]+'</p><div class="signature">Always, John ❤️</div></div>';document.getElementById('modal').classList.add('show');}
+function chooseDate(el,type){
+  document.querySelectorAll('.date-card').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');
+  const notes={
+    en:{beach:'Deal. Sunset + you + me. I am already planning it. 🌊❤️',mountains:'Deal. Cold air, long drive and you stealing my jacket. ⛰️😏',night:'Deal. Rudra, the road, our playlist and no rush. 🏍️❤️'},
+    te:{beach:'డీల్. సన్‌సెట్ + నువ్వు + నేను. ఇప్పుడే ప్లాన్ చేస్తున్నా. 🌊❤️',mountains:'డీల్. చల్లని గాలి, లాంగ్ డ్రైవ్… నా జాకెట్ నువ్వు కొట్టేయడం. ⛰️😏',night:'డీల్. రుద్ర, రోడ్, మన ప్లేలిస్ట్… ఎలాంటి తొందర లేదు. 🏍️❤️'}
+  };
+  document.getElementById('dateNote').textContent=notes[lang][type];burst();
+}
+function toggleWhen(el){el.classList.toggle('open');if(el.classList.contains('open'))burst();}
+function startLoveMeter(){
+  const fill=document.getElementById('meterFill'),value=document.getElementById('meterValue');if(!fill)return;
+  fill.style.width='100%';
+  let n=0;clearInterval(window.meterTimer);window.meterTimer=setInterval(()=>{n+=4;if(n>=100){n=100;clearInterval(window.meterTimer);value.textContent='∞%';burst();}else value.textContent=n+'%';},55);
+}
 function burst(){for(let i=0;i<45;i++){const e=document.createElement('div');e.textContent=['❤','💗','✨','🌸','💕'][i%5];e.style.position='fixed';e.style.left='50%';e.style.top='55%';e.style.zIndex='220';e.style.pointerEvents='none';e.style.fontSize=(14+Math.random()*25)+'px';const x=Math.random()*720-360,y=Math.random()*650-325,r=Math.random()*360;e.animate([{transform:'translate(-50%,-50%) scale(.2)',opacity:1},{transform:'translate(calc(-50% + '+x+'px),calc(-50% + '+y+'px)) rotate('+r+'deg) scale(1)',opacity:0}],{duration:1500,easing:'cubic-bezier(.2,.7,.2,1)'});document.body.appendChild(e);setTimeout(()=>e.remove(),1550)}}
 function finale(){burst();openModal('letter');setTimeout(()=>{document.getElementById('final').scrollIntoView({behavior:'smooth'})},500)}
 for(let i=0;i<45;i++){const e=document.createElement('div');e.className='petal';e.textContent=['❤','♡','💗','✦','🌸'][i%5];e.style.left=Math.random()*100+'vw';e.style.fontSize=(11+Math.random()*23)+'px';e.style.animationDuration=(8+Math.random()*11)+'s';e.style.animationDelay=(-Math.random()*15)+'s';document.getElementById('decor').appendChild(e)}
 for(let i=0;i<25;i++){const e=document.createElement('div');e.className='spark';e.style.left=Math.random()*100+'vw';e.style.top=Math.random()*100+'vh';e.style.animationDelay=(-Math.random()*4)+'s';document.getElementById('decor').appendChild(e)}
-renderCinema();resetTimer();
+renderCinema();resetTimer();renderReasons();
 </script>
 </body>
 </html>
