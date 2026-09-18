@@ -311,7 +311,7 @@ function setLang(l){
  renderCinema();
 }
 document.addEventListener('click',e=>{const box=document.getElementById('languageBox');if(box&&!box.contains(e.target))box.classList.remove('open')});
-function enterExperience(){document.getElementById('intro').classList.add('hide');setTimeout(()=>document.getElementById('home').scrollIntoView({behavior:'smooth'}),350);toggleSong();}
+function enterExperience(){const intro=document.getElementById('intro');if(intro)intro.classList.add('hide');const home=document.getElementById('home');if(home)setTimeout(()=>home.scrollIntoView({behavior:'smooth',block:'start'}),150);try{playSelectedSong();}catch(e){console.warn('Music could not start:',e);}}
 function classifySlide(img,slide){
   if(!img.naturalWidth||!img.naturalHeight)return;
   const ratio=img.naturalWidth/img.naturalHeight;
