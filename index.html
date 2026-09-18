@@ -294,7 +294,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
 
-<audio id="song1" preload="none" src="song1.mp3"></audio><audio id="song2" preload="none" src="song2.mp3"></audio>
+<audio id="song1" preload="none" src="song1.mp3"></audio><audio id="song2" preload="none" src="song2.mp3"></audio><audio id="heartbeatSfx" preload="auto" src="heartbeat.mp3"></audio><audio id="roseSfx" preload="auto" src="rose-chime.mp3"></audio><audio id="unlockSfx" preload="auto" src="unlock.mp3"></audio>
 <script>
 const photos=['photo1.png','photo2.png','photo3.png','photo4.png','photo5.png','photo6.png','photo7.jpeg','photo8.jpeg','photo9.png','photo10.jpeg'];
 const captions=[
@@ -343,8 +343,8 @@ function openModal(type){const m=document.getElementById('modal'),c=document.get
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 document.querySelector('.letter').onclick=()=>openModal('letter');
 function quizAnswer(){document.getElementById('quizResult').style.display='block';burst();}
-function bloomRose(el){el.classList.toggle('open');burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
-function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').classList.add('show');burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
+function playSfx(id,volume=.55){const a=document.getElementById(id);if(!a)return;a.currentTime=0;a.volume=volume;const p=a.play();if(p&&p.catch)p.catch(()=>{});}\nfunction bloomRose(el){el.classList.toggle('open');if(el.classList.contains('open'))playSfx('roseSfx',.45);burst();if(document.querySelectorAll('.rose-bloom.open').length===10){setTimeout(()=>burst(),250)}}
+function unlockSecret(){const v=document.getElementById('secretInput').value.trim().toLowerCase();if(v==='john'||v==='జాన్'){document.getElementById('secretMsg').classList.add('show');playSfx('unlockSfx',.5);burst()}else{document.getElementById('secretInput').animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:300});}}
 let activeSong=1,songPlaying=false;
 function getSong(){return document.getElementById('song'+activeSong)}
 function updateSongUI(){const icon=document.getElementById('playIcon');icon.textContent=songPlaying?'❚❚':'▶';}
