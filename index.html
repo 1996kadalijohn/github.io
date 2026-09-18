@@ -58,7 +58,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-4;pointer-events:none;back
 @media(max-width:900px){.interactive-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.interactive-grid{grid-template-columns:1fr}.heart-stage,.meter{padding:27px 18px}.tap-heart{width:125px;height:125px;font-size:62px}.final-choice button{width:100%}}
 
-.slide.portrait{background:radial-gradient(circle at 50% 45%,#4b2455 0%,#170713 72%)}.slide.portrait img{object-fit:contain;transform:scale(1.01);padding:8px}.slide.portrait.active img{transform:scale(1.03)}.slide.portrait:after{background:linear-gradient(0deg,rgba(8,1,5,.78),transparent 42%)}
+.slide.portrait{background:radial-gradient(circle at 50% 45%,#4b2455 0%,#170713 72%)}.slide.portrait img{object-fit:contain;transform:scale(1.01);padding:8px}.slide.portrait.active img{transform:scale(1.03)}.slide.portrait:after{background:linear-gradient(0deg,rgba(8,1,5,.78),transparent 42%)}.slide.square{background:radial-gradient(circle at 50% 45%,#452044 0%,#170713 72%)}.slide.square img{object-fit:contain;padding:8px}.slide.square.active img{transform:scale(1.03)}
 </style>
 </head>
 <body>
@@ -229,7 +229,29 @@ const captions=[
 let lang='en',current=0,timer=null,audioCtx=null,osc=null,gain=null;
 function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-en]').forEach(e=>e.innerHTML=e.getAttribute('data-'+l));document.getElementById('en').classList.toggle('on',l==='en');document.getElementById('te').classList.toggle('on',l==='te');renderCinema();}
 function enterExperience(){document.getElementById('intro').classList.add('hide');setTimeout(()=>document.getElementById('home').scrollIntoView({behavior:'smooth'}),350);toggleSong();}
-function renderCinema(){const box=document.getElementById('cinema');box.innerHTML='';photos.forEach((p,i)=>{const s=document.createElement('div');s.className='slide '+(i===current?'active ':'')+(i===9?'portrait':'');s.innerHTML='<img src="'+p+'" alt="Memory '+(i+1)+'"><div class="slide-copy"><div class="num">'+String(i+1).padStart(2,'0')+' / 10</div><h4>'+captions[lang==='en'?0:1][i]+'</h4><p>'+(lang==='en'?'Every picture carries a little piece of our story.':'ప్రతి ఫోటోలో మన కథలోని ఒక చిన్న భాగం ఉంది.')+'</p></div>';box.appendChild(s)});box.innerHTML+='<div class="cinema-nav"><button class="arrow" onclick="prevPhoto()">‹</button><button class="arrow" onclick="nextPhoto()">›</button></div><div class="progress"><i id="prog"></i></div>';renderThumbs();updateProgress();}
+function classifySlide(img,slide){
+  if(!img.naturalWidth||!img.naturalHeight)return;
+  const ratio=img.naturalWidth/img.naturalHeight;
+  slide.classList.remove('portrait','square');
+  if(ratio<0.88)slide.classList.add('portrait');
+  else if(ratio>=0.88&&ratio<=1.12)slide.classList.add('square');
+}
+function renderCinema(){
+  const box=document.getElementById('cinema');box.innerHTML='';
+  photos.forEach((p,i)=>{
+    const s=document.createElement('div');
+    s.className='slide '+(i===current?'active ':'');
+    const img=document.createElement('img');
+    img.src=p;img.alt='Memory '+(i+1);
+    img.onload=()=>classifySlide(img,s);
+    const copy=document.createElement('div');
+    copy.className='slide-copy';
+    copy.innerHTML='<div class="num">'+String(i+1).padStart(2,'0')+' / '+photos.length+'</div><h4>'+captions[lang==='en'?0:1][i]+'</h4><p>'+(lang==='en'?'Every picture carries a little piece of our story.':'ప్రతి ఫోటోలో మన కథలోని ఒక చిన్న భాగం ఉంది.')+'</p>';
+    s.appendChild(img);s.appendChild(copy);box.appendChild(s);
+  });
+  box.innerHTML+='<div class="cinema-nav"><button class="arrow" onclick="prevPhoto()">‹</button><button class="arrow" onclick="nextPhoto()">›</button></div><div class="progress"><i id="prog"></i></div>';
+  renderThumbs();updateProgress();
+}
 function renderThumbs(){const t=document.getElementById('thumbs');t.innerHTML=photos.map((p,i)=>'<button class="'+(i===current?'on':'')+'" onclick="goPhoto('+i+')"><img src="'+p+'" alt=""></button>').join('');}
 function updateProgress(){const p=document.getElementById('prog');if(p)p.style.width=((current+1)/photos.length*100)+'%';document.querySelectorAll('#thumbs button').forEach((b,i)=>b.classList.toggle('on',i===current));}
 function goPhoto(i){current=(i+photos.length)%photos.length;document.querySelectorAll('#cinema .slide').forEach((s,n)=>s.classList.toggle('active',n===current));updateProgress();resetTimer();}
